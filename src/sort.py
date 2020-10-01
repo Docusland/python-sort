@@ -19,7 +19,16 @@ def selection_sort(to_sort: list) -> list:
     :param to_sort:
     :return:
     """
-    return to_sort
+    sorted_list = []
+    while len(to_sort) > 0:
+        lower = to_sort[0]
+        for i in range(1, len(to_sort)):
+            item = to_sort[i]
+            if lower > item:
+                lower = item
+        to_sort.remove(lower)
+        sorted_list.insert(len(sorted_list), lower)
+    return sorted_list
 
 
 def bubble_sort(to_sort: list) -> list:
@@ -28,6 +37,20 @@ def bubble_sort(to_sort: list) -> list:
         they are in wrong order.
         Cost : Best = n, Average = n x n, Worst = n x n
     """
+    unsorted = True
+    while unsorted:
+        unsorted = False
+        litem = None
+        for i in range(len(to_sort)):
+            item = to_sort[i]
+            if litem is None:
+                litem = item
+            elif litem > item:
+                to_sort[i - 1] = item
+                to_sort[i] = litem
+                unsorted = True
+            else:
+                litem = item
     return to_sort
 
 
@@ -46,7 +69,15 @@ def insertion_sort(to_sort: list) -> list:
     :param to_sort: list to order
     :return: sorted list
     """
+    for i in range(1, len(to_sort)):
+        item = to_sort[i]
+        j = i - 1
+        while j >= 0 and item < to_sort[j]:
+            to_sort[j + 1] = to_sort[j]
+            j -= 1
+        to_sort[j + 1] = item
     return to_sort
+
 
 def merge_sort(to_sort: list) -> list:
     """
@@ -112,7 +143,5 @@ def heap_sort(arr: list) ->list:
     :param arr:
     :return:
     """
-
-    
 
     return arr
