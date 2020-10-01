@@ -19,6 +19,12 @@ def selection_sort(to_sort: list) -> list:
     :param to_sort:
     :return:
     """
+    for i in range(len(to_sort)):
+        min_index = i
+        for j in range(i + 1, len(to_sort)):
+            if to_sort[min_index] > to_sort[j]:
+                min_index = j
+        to_sort[i], to_sort[min_index] = to_sort[min_index], to_sort[i]
     return to_sort
 
 
@@ -28,6 +34,10 @@ def bubble_sort(to_sort: list) -> list:
         they are in wrong order.
         Cost : Best = n, Average = n x n, Worst = n x n
     """
+    for i in range(len(to_sort)):
+        for j in range(0, len(to_sort) - i - 1):
+            if to_sort[j] > to_sort[j + 1]:
+                to_sort[j], to_sort[j + 1] = to_sort[j + 1], to_sort[j]
     return to_sort
 
 
@@ -46,7 +56,15 @@ def insertion_sort(to_sort: list) -> list:
     :param to_sort: list to order
     :return: sorted list
     """
+    for i in range(1, len(to_sort)):
+        index = to_sort[i]
+        j = i - 1
+        while j >= 0 and index < to_sort[j]:
+            to_sort[j + 1] = to_sort[j]
+            j -= 1
+        to_sort[j + 1] = index
     return to_sort
+
 
 def merge_sort(to_sort: list) -> list:
     """
@@ -66,8 +84,18 @@ def merge_sort(to_sort: list) -> list:
     :param to_sort:
     :return:
     """
-   
+
+    if len(to_sort) > 1:
+        m = len(to_sort) // 2
+        l = to_sort[:m]
+        r = to_sort[m:]
+
+        merge_sort(l)
+        merge_sort(r)
+
+
     return to_sort
+
 
 def quick_sort(arr: list, start: int = None, end: int = None) -> list:
     """
@@ -86,11 +114,11 @@ def quick_sort(arr: list, start: int = None, end: int = None) -> list:
     :param arr:
     :return:
     """
-    
+
     return arr
 
 
-def heap_sort(arr: list) ->list:
+def heap_sort(arr: list) -> list:
     """
     Heap sort is a comparison based sorting technique based on Binary Heap data structure. It is similar to selection
     sort where we first find the maximum element and place the maximum element at the end. We repeat the same process
@@ -112,7 +140,5 @@ def heap_sort(arr: list) ->list:
     :param arr:
     :return:
     """
-
-    
 
     return arr
