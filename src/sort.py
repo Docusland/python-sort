@@ -19,6 +19,23 @@ def selection_sort(to_sort: list) -> list:
     :param to_sort:
     :return:
     """
+
+    sorted_array = []
+
+    for j in range(0, len(to_sort)):
+        lowest_number = to_sort[0]
+        lowest_id = -1
+
+        for i in range(1, len(to_sort)):
+            if lowest_number > to_sort[i]:
+                lowest_number = to_sort[i]
+                lowest_id = i
+
+        sorted_array.append(lowest_number)
+        del to_sort[lowest_id]
+
+    print(sorted_array)
+
     return to_sort
 
 
@@ -28,6 +45,21 @@ def bubble_sort(to_sort: list) -> list:
         they are in wrong order.
         Cost : Best = n, Average = n x n, Worst = n x n
     """
+
+    for i in range(0, len(to_sort)):
+        if i < len(to_sort):
+            for j in range(i + 1, len(to_sort)):
+                if to_sort[i] > to_sort[j]:
+                    # lowest_number = unsorted_array[j]
+                    # unsorted_array[j] = unsorted_array[i]
+                    # unsorted_array[i] = lowest_number
+
+                    # écriture plus simple en python, mais ce qui est au dessus est correct
+                    # ça permute les valeurs d'un tableau
+                    to_sort[i], to_sort[j] = to_sort[j], to_sort[i]
+
+    print(to_sort)
+
     return to_sort
 
 
@@ -46,6 +78,15 @@ def insertion_sort(to_sort: list) -> list:
     :param to_sort: list to order
     :return: sorted list
     """
+
+    to_sort = [10, 4, 9, 3, 1, 5, 7, 2, 6, 8]
+    lowest_id = -1
+
+    for i in range(0, len(to_sort)):
+        if to_sort[i+1] < to_sort[i]:
+            to_sort[i], to_sort[i+1] = to_sort[i+1], to_sort[i]
+            lowest_id = i+1
+
     return to_sort
 
 def merge_sort(to_sort: list) -> list:
